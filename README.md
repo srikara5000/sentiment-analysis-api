@@ -41,14 +41,14 @@ In Windows PowerShell:
 **uvicorn app.main:app --reload**
 
 
-API will be running at:
+### API will be running at:
  **  http://127.0.0.1:8000/docs**
 
 
- API Endpoints
+### API Endpoints
 * **1️ Analyze Single Text**
 
-POST /api/analyze
+#### POST /api/analyze
 * **Request Body:**
 
 {
@@ -68,7 +68,7 @@ POST /api/analyze
 
 * **2️ Batch Analyze Multiple Texts**
 
-POST /api/batch-analyze
+#### POST /api/batch-analyze
 * **Request Body:**
 
 {
