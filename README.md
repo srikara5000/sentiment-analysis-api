@@ -1,6 +1,6 @@
 # Sentiment Analysis API
 
-A API built with **FastAPI** that performs sentiment analysis on text inputs.  
+A Rest API built with **FastAPI** that performs sentiment analysis on text inputs.  
 Supports single and batch analysis, returning sentiment (`POSITIVE`, `NEGATIVE`, or `NEUTRAL`) along with a confidence score.
 
 ## Features
@@ -24,32 +24,32 @@ Make sure you have the following installed on **Windows**:
 In Windows PowerShell:
 
 ### 1. Clone the repository (if using Git)
-git clone https://github.com/your-username/sentiment-analysis-api.git
-cd sentiment-analysis-api
+**git clone https://github.com/your-username/sentiment-analysis-api.git**
+**cd sentiment-analysis-api**
 
 ### 2. Create a virtual environment
-python -m venv venv
+**python -m venv venv**
 
 ### 3. Activate the virtual environment
-.\venv\Scripts\Activate
+**.\venv\Scripts\Activate**
 
 ### 4. Install dependencies 
-pip install --upgrade pip
-pip install -r requirements.txt
+**pip install --upgrade pip**
+**pip install -r requirements.txt**
 
 ### 5. Run the FastAPI server
-uvicorn app.main:app --reload
+**uvicorn app.main:app --reload**
 
 
 API will be running at:
-   http://127.0.0.1:8000/docs
+ **  http://127.0.0.1:8000/docs**
 
 
  API Endpoints
-1️ Analyze Single Text
+* **1️ Analyze Single Text**
 
 POST /api/analyze
-Request Body:
+* **Request Body:**
 
 {
   "text": "I love this product! It is amazing.",
@@ -69,7 +69,7 @@ Request Body:
 * **2️ Batch Analyze Multiple Texts**
 
 POST /api/batch-analyze
-Request Body:
+* **Request Body:**
 
 {
   "items": [
