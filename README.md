@@ -3,14 +3,14 @@
 A API built with **FastAPI** that performs sentiment analysis on text inputs.  
 Supports single and batch analysis, returning sentiment (`POSITIVE`, `NEGATIVE`, or `NEUTRAL`) along with a confidence score.
 
-# Features
+## Features
 - Analyze sentiment of individual text inputs
 - Batch sentiment analysis of multiple texts
 - Returns confidence scores with each prediction
 - JSON-based REST API with **FastAPI Swagger UI**
 - Lightweight and fast (Uvicorn ASGI server)
 
-# Requirements
+## Requirements
 
 Make sure you have the following installed on **Windows**:
 
@@ -19,25 +19,25 @@ Make sure you have the following installed on **Windows**:
 - Git (optional, if cloning repository)
 - Virtualenv (recommended)
 
-# Running the API
+## Running the API
 
 In Windows PowerShell:
 
-# 1. Clone the repository (if using Git)
+## 1. Clone the repository (if using Git)
 git clone https://github.com/your-username/sentiment-analysis-api.git
 cd sentiment-analysis-api
 
-# 2. Create a virtual environment
+## 2. Create a virtual environment
 python -m venv venv
 
-# 3. Activate the virtual environment
+## 3. Activate the virtual environment
 .\venv\Scripts\Activate
 
-# 4. Install dependencies 
+## 4. Install dependencies 
 pip install --upgrade pip
 pip install -r requirements.txt
 
-# 5. Run the FastAPI server
+## 5. Run the FastAPI server
 uvicorn app.main:app --reload
 
 
@@ -118,21 +118,21 @@ Response (example):
 You can test your API using Swagger UI at http://127.0.0.1:8000/docs 
 
 
-# Run all tests
+### Run all tests
 pytest
 
-# Run with coverage
+### Run with coverage
 pytest --cov=app --cov-report=term-missing 
 
-# Design Decisions
+### Design Decisions
 
 Great — this section usually appears in your **README.md** or in your report/viva explanation. Let me prepare it for you in a polished way 👇
 
 ---
 
-#  Design Decisions
+##  Design Decisions
 
-# 1. Libraries
+###1. Libraries
 
 * **FastAPI**:
 
@@ -161,7 +161,7 @@ Great — this section usually appears in your **README.md** or in your report/v
 
 ---
 
-#2. Handling Edge Cases
+###2. Handling Edge Cases
 
 * **Empty Text**:
 
@@ -194,7 +194,7 @@ Great — this section usually appears in your **README.md** or in your report/v
 
 ---
 
-# 3. Assumptions Made
+### 3. Assumptions Made
 
 * Input texts are **short (≤1000 chars)** — longer texts truncated before model inference.
 * Users primarily care about **3-class sentiment**: `POSITIVE`, `NEGATIVE`, `NEUTRAL`.
