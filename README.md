@@ -126,14 +126,84 @@ pytest --cov=app --cov-report=term-missing
 
 # Design Decisions
 
-   FastAPI chosen for async speed + built-in docs (Swagger UI at /docs)
+  1. Choice of Libraries
 
-  Transformers used for high-accuracy sentiment, with TextBlob fallback for lightweight mode
+FastAPI:
 
-  Pydantic models enforce strict request validation
+Chosen for its speed, async support, and built-in Swagger UI (/docs) which makes testing endpoints easy.
 
-  IST timestamps for local compliance
+Better developer experience compared to Flask because of native Pydantic integration.
 
-  Batch API supports partial results + metrics for robustness
+Pydantic:
 
-  PEP8 compliance ensured using black + flake8
+Used for data validation and enforcing request/response models.
+
+Ensures input JSON matches expected schema (e.g., prevents empty/invalid items in batch API).
+
+Transformers (Hugging Face):
+
+Provides state-of-the-art NLP models.
+
+Used distilbert-base-uncased-finetuned-sst-2-english, a lightweight yet high-performing sentiment model.
+
+Allows confidence scoring, which NLTK/TextBlob don’t support as well.
+
+Pytest + httpx:
+
+For automated unit and integration tests.
+
+httpx allows ASGI testing of FastAPI apps without running a server.
+
+Black + Flake8:
+
+Enforce code formatting and linting → maintain readability and follow PEP8.
+
+2. Handling Edge Cases
+
+Empty Text:
+
+If input text is empty or only spaces, API raises 400 Bad Request.
+
+Prevents wasting model resources.
+
+Special Characters:
+
+Cleaned using regex in utils.py (clean_text) to normalize whitespace and remove noise.
+
+Confidence Scores:
+
+Neutral cutoff applied (if confidence < 0.55, sentiment forced to "NEUTRAL").
+
+Prevents false positives on ambiguous text.
+
+Batch Size Limit:
+
+Maximum 100 items enforced (413 Payload Too Large if exceeded).
+
+Keeps response times predictable and prevents overloading.
+
+Partial Failures in Batch:
+
+If one text fails (e.g., empty), API still returns results for others + an error object.
+
+This ensures robustness in production workloads.
+
+Timestamps in IST:
+
+All responses use IST (Asia/Kolkata timezone) via utils.utc_now_iso().
+
+Matches business requirement (Kalkura team based in India).
+
+3. Assumptions Made
+
+Input texts are short (≤1000 chars) — longer texts truncated before model inference.
+
+Users primarily care about 3-class sentiment: POSITIVE, NEGATIVE, NEUTRAL.
+
+Confidence values are meaningful only when include_confidence is explicitly set to true.
+
+API will run on CPU (Jetson Nano / developer laptops), so we used distilbert (lightweight model).
+
+Basic authentication/security is out of scope for this assessment (to be added in production).
+
+Error messages are returned in JSON consistently, to simplify integration.
