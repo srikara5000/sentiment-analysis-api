@@ -46,9 +46,9 @@ In Windows PowerShell:
 
 
 ### API Endpoints
-* **1️ Analyze Single Text**
+** 1️ Analyze Single Text **
 
-#### POST /api/analyze
+### POST /api/analyze
 * **Request Body:**
 
 {
@@ -65,8 +65,7 @@ In Windows PowerShell:
   "confidence": 0.9998,
   "timestamp": "2025-09-10T10:55:38Z"
 }
-
-* **2️ Batch Analyze Multiple Texts**
+**2️ Batch Analyze Multiple Texts**
 
 #### POST /api/batch-analyze
 * **Request Body:**
