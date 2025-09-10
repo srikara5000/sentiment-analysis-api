@@ -9,6 +9,25 @@ Supports single and batch analysis, returning sentiment (`POSITIVE`, `NEGATIVE`,
 - Returns confidence scores with each prediction
 - JSON-based REST API with **FastAPI Swagger UI**
 - Lightweight and fast (Uvicorn ASGI server)
+## File Structure
+sentiment-api/
+├── app/                          # Core application package
+│   ├── __init__.py               # Marks directory as a Python package
+│   ├── main.py                   # FastAPI app entry point (endpoints)
+│   ├── models.py                 # Pydantic models (request/response schemas)
+│   ├── sentiment.py              # Sentiment analysis logic (Hugging Face pipeline)
+│   └── utils.py                  # Helper functions (clean text, UUIDs, IST timestamps)
+│
+├── tests/                        # Test suite
+│   ├── __init__.py
+│   ├── test_api.py               # Tests for API endpoints (/analyze, /batch-analyze)
+│   └── test_sentiment.py         # Unit tests for sentiment analysis logic
+│
+├── .gitignore                    # Git ignore file (venv, coverage, cache, etc.)
+├── requirements.txt              # Dependencies (FastAPI, transformers, torch, pytest, etc.)
+├── README.md                     # Project documentation (setup, usage, API docs, testing)
+├── run.py                        # Application runner (starts Uvicorn server)
+└── .coverage                     # Test coverage report (created after pytest with --cov)
 
 ## Requirements
 
