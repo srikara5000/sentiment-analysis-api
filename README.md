@@ -58,7 +58,6 @@ python -m venv venv
 ```
 ### 4. Install dependencies 
 ```
-pip install --upgrade pip
 pip install -r requirements.txt
 ```
 ### 5. Run the FastAPI server
