@@ -112,7 +112,6 @@ Request Body:
     "time_seconds": 0.147
   }
 }
-<img width="1769" height="778" alt="image" src="https://github.com/user-attachments/assets/41486119-5e88-4994-9e02-d6b68e31bb67" />
 
  ### Testing in Swagger UI
 
