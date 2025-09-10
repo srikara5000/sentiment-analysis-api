@@ -9,7 +9,9 @@ Supports single and batch analysis, returning sentiment (`POSITIVE`, `NEGATIVE`,
 - Returns confidence scores with each prediction
 - JSON-based REST API with **FastAPI Swagger UI**
 - Lightweight and fast (Uvicorn ASGI server)
-## File Structure
+## Project Structure
+```
+C:.
 sentiment-api/
 ├── app/                          # Core application package
 │   ├── __init__.py               # Marks directory as a Python package
@@ -28,7 +30,7 @@ sentiment-api/
 ├── README.md                     # Project documentation (setup, usage, API docs, testing)
 ├── run.py                        # Application runner (starts Uvicorn server)
 └── .coverage                     # Test coverage report (created after pytest with --cov)
-
+```
 ## Requirements
 
 Make sure you have the following installed on **Windows**:
@@ -38,38 +40,44 @@ Make sure you have the following installed on **Windows**:
 - Git (optional, if cloning repository)
 - Virtualenv (recommended)
 
-## Running the API
+## Installation
 
 In Windows PowerShell:
 
 ### 1. Clone the repository (if using Git)
+```
 git clone https://github.com/your-username/sentiment-analysis-api.git
 cd sentiment-analysis-api
-
+```
 ### 2. Create a virtual environment
+```
 python -m venv venv
-
+```
 ### 3. Activate the virtual environment
+```
 .\venv\Scripts\Activate
-
+```
 ### 4. Install dependencies 
+```
 pip install --upgrade pip
 pip install -r requirements.txt
-
+```
 ### 5. Run the FastAPI server
+```
 uvicorn run:app --reload
 
-
+```
 ### API will be running at:
+```
   http://127.0.0.1:8000/docs
 
-
+```
 ### API Endpoints
 ### 1️ Analyze Single Text 
 
 ### POST /api/analyze
 * **Request Body:**
-
+```mermaid
 {
   "text": "I love this product! It is amazing.",
   "include_confidence": true
@@ -96,10 +104,10 @@ uvicorn run:app --reload
     { "text": "It’s okay, nothing special." }
   ]
 }
-
+```
 
 * **Response (example):**:
-
+```
 {
   "results": [
     {
@@ -130,7 +138,7 @@ uvicorn run:app --reload
     "time_seconds": 0.147
   }
 }
-
+```
  ### Testing in Swagger UI
 
 You can test your API using Swagger UI at http://127.0.0.1:8000/docs 
