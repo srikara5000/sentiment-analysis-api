@@ -126,84 +126,80 @@ pytest --cov=app --cov-report=term-missing
 
 # Design Decisions
 
-  1. Choice of Libraries
+Great — this section usually appears in your **README.md** or in your report/viva explanation. Let me prepare it for you in a polished way 👇
 
-FastAPI:
+---
 
-Chosen for its speed, async support, and built-in Swagger UI (/docs) which makes testing endpoints easy.
+##  Design Decisions
 
-Better developer experience compared to Flask because of native Pydantic integration.
+### 1. Libraries
 
-Pydantic:
+* **FastAPI**:
 
-Used for data validation and enforcing request/response models.
+  * Chosen for its **speed**, **async support**, and **built-in Swagger UI** (`/docs`) which makes testing endpoints easy.
+  * Better developer experience compared to Flask because of native Pydantic integration.
 
-Ensures input JSON matches expected schema (e.g., prevents empty/invalid items in batch API).
+* **Pydantic**:
 
-Transformers (Hugging Face):
+  * Used for **data validation** and enforcing request/response models.
+  * Ensures input JSON matches expected schema (e.g., prevents empty/invalid `items` in batch API).
 
-Provides state-of-the-art NLP models.
+* **Transformers (Hugging Face)**:
 
-Used distilbert-base-uncased-finetuned-sst-2-english, a lightweight yet high-performing sentiment model.
+  * Provides **state-of-the-art NLP models**.
+  * Used `distilbert-base-uncased-finetuned-sst-2-english`, a lightweight yet high-performing sentiment model.
+  * Allows confidence scoring, which NLTK/TextBlob don’t support as well.
 
-Allows confidence scoring, which NLTK/TextBlob don’t support as well.
+* **Pytest + httpx**:
 
-Pytest + httpx:
+  * For automated **unit and integration tests**.
+  * `httpx` allows ASGI testing of FastAPI apps without running a server.
 
-For automated unit and integration tests.
+* **Black + Flake8**:
 
-httpx allows ASGI testing of FastAPI apps without running a server.
+  * Enforce code formatting and linting → maintain readability and follow PEP8.
 
-Black + Flake8:
+---
 
-Enforce code formatting and linting → maintain readability and follow PEP8.
+### 2. Handling Edge Cases
 
-2. Handling Edge Cases
+* **Empty Text**:
 
-Empty Text:
+  * If input text is empty or only spaces, API raises `400 Bad Request`.
+  * Prevents wasting model resources.
 
-If input text is empty or only spaces, API raises 400 Bad Request.
+* **Special Characters**:
 
-Prevents wasting model resources.
+  * Cleaned using regex in `utils.py` (`clean_text`) to normalize whitespace and remove noise.
 
-Special Characters:
+* **Confidence Scores**:
 
-Cleaned using regex in utils.py (clean_text) to normalize whitespace and remove noise.
+  * Neutral cutoff applied (if confidence < `0.55`, sentiment forced to `"NEUTRAL"`).
+  * Prevents false positives on ambiguous text.
 
-Confidence Scores:
+* **Batch Size Limit**:
 
-Neutral cutoff applied (if confidence < 0.55, sentiment forced to "NEUTRAL").
+  * Maximum 100 items enforced (`413 Payload Too Large` if exceeded).
+  * Keeps response times predictable and prevents overloading.
 
-Prevents false positives on ambiguous text.
+* **Partial Failures in Batch**:
 
-Batch Size Limit:
+  * If one text fails (e.g., empty), API still returns results for others + an error object.
+  * This ensures robustness in production workloads.
 
-Maximum 100 items enforced (413 Payload Too Large if exceeded).
+* **Timestamps in IST**:
 
-Keeps response times predictable and prevents overloading.
+  * All responses use IST (`Asia/Kolkata` timezone) via `utils.utc_now_iso()`.
+  * Matches business requirement (Kalkura team based in India).
 
-Partial Failures in Batch:
+---
 
-If one text fails (e.g., empty), API still returns results for others + an error object.
+### 3. Assumptions Made
 
-This ensures robustness in production workloads.
+* Input texts are **short (≤1000 chars)** — longer texts truncated before model inference.
+* Users primarily care about **3-class sentiment**: `POSITIVE`, `NEGATIVE`, `NEUTRAL`.
+* Confidence values are meaningful only when `include_confidence` is explicitly set to `true`.
+* API will run on **CPU** (Jetson Nano / developer laptops), so we used `distilbert` (lightweight model).
+* Basic authentication/security is **out of scope** for this assessment (to be added in production).
+* Error messages are returned in JSON consistently, to simplify integration.
 
-Timestamps in IST:
-
-All responses use IST (Asia/Kolkata timezone) via utils.utc_now_iso().
-
-Matches business requirement (Kalkura team based in India).
-
-3. Assumptions Made
-
-Input texts are short (≤1000 chars) — longer texts truncated before model inference.
-
-Users primarily care about 3-class sentiment: POSITIVE, NEGATIVE, NEUTRAL.
-
-Confidence values are meaningful only when include_confidence is explicitly set to true.
-
-API will run on CPU (Jetson Nano / developer laptops), so we used distilbert (lightweight model).
-
-Basic authentication/security is out of scope for this assessment (to be added in production).
-
-Error messages are returned in JSON consistently, to simplify integration.
