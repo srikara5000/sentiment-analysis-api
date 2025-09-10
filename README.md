@@ -80,7 +80,7 @@ Request Body:
 }
 
 
-Response (example):
+* **Response (example):**:
 
 {
   "results": [
@@ -123,12 +123,6 @@ pytest
 
 ### Run with coverage
 pytest --cov=app --cov-report=term-missing 
-
-### Design Decisions
-
-Great — this section usually appears in your **README.md** or in your report/viva explanation. Let me prepare it for you in a polished way 👇
-
----
 
 ##  Design Decisions
 
