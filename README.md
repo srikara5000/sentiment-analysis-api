@@ -11,7 +11,6 @@ Supports single and batch analysis, returning sentiment (`POSITIVE`, `NEGATIVE`,
 - Lightweight and fast (Uvicorn ASGI server)
 ## Project Structure
 ```
-C:.
 sentiment-api/
 ├── app/                          # Core application package
 │   ├── __init__.py               # Marks directory as a Python package
