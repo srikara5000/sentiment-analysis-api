@@ -23,21 +23,21 @@ Make sure you have the following installed on **Windows**:
 
 In Windows PowerShell:
 
-## 1. Clone the repository (if using Git)
+### 1. Clone the repository (if using Git)
 git clone https://github.com/your-username/sentiment-analysis-api.git
 cd sentiment-analysis-api
 
-## 2. Create a virtual environment
+### 2. Create a virtual environment
 python -m venv venv
 
-## 3. Activate the virtual environment
+### 3. Activate the virtual environment
 .\venv\Scripts\Activate
 
-## 4. Install dependencies 
+### 4. Install dependencies 
 pip install --upgrade pip
 pip install -r requirements.txt
 
-## 5. Run the FastAPI server
+### 5. Run the FastAPI server
 uvicorn app.main:app --reload
 
 
@@ -56,7 +56,7 @@ Request Body:
   "include_confidence": true
 }
 
-Response:
+* **Response (example):**
 
 {
   "analysis_id": "uuid",
@@ -66,7 +66,7 @@ Response:
   "timestamp": "2025-09-10T10:55:38Z"
 }
 
-2️ Batch Analyze Multiple Texts
+* **2️ Batch Analyze Multiple Texts**
 
 POST /api/batch-analyze
 Request Body:
@@ -113,7 +113,7 @@ Request Body:
   }
 }
 
- Testing in Swagger UI
+ ### Testing in Swagger UI
 
 You can test your API using Swagger UI at http://127.0.0.1:8000/docs 
 
@@ -155,7 +155,7 @@ pytest --cov=app --cov-report=term-missing
 
 ---
 
-###2. Handling Edge Cases
+### 2. Handling Edge Cases
 
 * **Empty Text**:
 
