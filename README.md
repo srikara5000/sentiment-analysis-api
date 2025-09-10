@@ -3,7 +3,7 @@
 A API built with **FastAPI** that performs sentiment analysis on text inputs.  
 Supports single and batch analysis, returning sentiment (`POSITIVE`, `NEGATIVE`, or `NEUTRAL`) along with a confidence score.
 
-## 🚀 Features
+## Features
 - Analyze sentiment of individual text inputs
 - Batch sentiment analysis of multiple texts
 - Returns confidence scores with each prediction
@@ -132,7 +132,7 @@ Great — this section usually appears in your **README.md** or in your report/v
 
 ##  Design Decisions
 
-### 1. Libraries
+# 1. Libraries
 
 * **FastAPI**:
 
@@ -161,7 +161,7 @@ Great — this section usually appears in your **README.md** or in your report/v
 
 ---
 
-### 2. Handling Edge Cases
+#2. Handling Edge Cases
 
 * **Empty Text**:
 
@@ -194,7 +194,7 @@ Great — this section usually appears in your **README.md** or in your report/v
 
 ---
 
-### 3. Assumptions Made
+# 3. Assumptions Made
 
 * Input texts are **short (≤1000 chars)** — longer texts truncated before model inference.
 * Users primarily care about **3-class sentiment**: `POSITIVE`, `NEGATIVE`, `NEUTRAL`.
