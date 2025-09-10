@@ -3,14 +3,14 @@
 A API built with **FastAPI** that performs sentiment analysis on text inputs.  
 Supports single and batch analysis, returning sentiment (`POSITIVE`, `NEGATIVE`, or `NEUTRAL`) along with a confidence score.
 
-## Features
+# Features
 - Analyze sentiment of individual text inputs
 - Batch sentiment analysis of multiple texts
 - Returns confidence scores with each prediction
 - JSON-based REST API with **FastAPI Swagger UI**
 - Lightweight and fast (Uvicorn ASGI server)
 
-## Requirements
+# Requirements
 
 Make sure you have the following installed on **Windows**:
 
@@ -19,7 +19,7 @@ Make sure you have the following installed on **Windows**:
 - Git (optional, if cloning repository)
 - Virtualenv (recommended)
 
-##  Running the API
+# Running the API
 
 In Windows PowerShell:
 
@@ -130,7 +130,7 @@ Great — this section usually appears in your **README.md** or in your report/v
 
 ---
 
-##  Design Decisions
+#  Design Decisions
 
 # 1. Libraries
 
