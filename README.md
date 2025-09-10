@@ -77,7 +77,7 @@ uvicorn run:app --reload
 
 ### POST /api/analyze
 * **Request Body:**
-```mermaid
+```
 {
   "text": "I love this product! It is amazing.",
   "include_confidence": true
@@ -141,18 +141,22 @@ uvicorn run:app --reload
 ```
  ### Testing in Swagger UI
 
-You can test your API using Swagger UI at http://127.0.0.1:8000/docs 
-
+You can test your API using Swagger UI at
+```
+http://127.0.0.1:8000/docs 
+```
 
 ### Run all tests
+```
 pytest
-
+```
 ### Run with coverage
+```
 pytest --cov=app --cov-report=term-missing 
-
+```
 ##  Design Decisions
 
-###1. Libraries
+### 1. Libraries
 
 * **FastAPI**:
 
