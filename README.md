@@ -38,7 +38,7 @@ pip install --upgrade pip
 pip install -r requirements.txt
 
 ### 5. Run the FastAPI server
-uvicorn app.main:app --reload
+uvicorn run:app --reload
 
 
 ### API will be running at:
