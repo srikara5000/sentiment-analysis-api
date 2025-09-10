@@ -81,9 +81,9 @@ uvicorn run:app --reload
   "text": "I love this product! It is amazing.",
   "include_confidence": true
 }
-
+```
 * **Response (example):**
-
+```
 {
   "analysis_id": "uuid",
   "text": "I love this product! It is amazing.",
@@ -91,11 +91,12 @@ uvicorn run:app --reload
   "confidence": 0.9998,
   "timestamp": "2025-09-10T10:55:38Z"
 }
+```
 ### 2️ Batch Analyze Multiple Texts
 
 ### POST /api/batch-analyze
 * **Request Body:**
-
+```
 {
   "items": [
     { "text": "I love this product!" },
